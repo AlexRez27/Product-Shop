@@ -47,14 +47,21 @@ export default {
     font-size: $--large-font-size;
     text-transform: capitalize;
     margin: 0;
-    margin-top: 20px;
+    margin-top: 30px;
   }
   &__list {
-    margin-top: 40px;
+    margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(0, 1fr));
     gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products__list {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(0, 1fr));
   }
 }
 </style>

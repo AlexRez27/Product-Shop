@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { categories } from '@/data/constants'
 export default {
   name: 'CategoryFilter',
@@ -27,14 +27,14 @@ export default {
     ...mapGetters(['getFilteredCategory']),
   },
   methods: {
+    ...mapActions(['fetchProducts']),
     ...mapMutations(['filterByCategory']),
-    ...mapActions(['filter']),
-    filterHandler(category) {
+    async filterHandler(category) {
       const currentQueryParams = { ...this.$route.query }
       currentQueryParams.category = category
       this.$router.push({ query: currentQueryParams })
       this.filterByCategory(category)
-      this.filter()
+      await this.fetchProducts(currentQueryParams)
     },
   },
 }
@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 .filter {
-  width: 150px;
+  width: max-content;
   color: blue;
   font-size: 18px;
   &:hover {

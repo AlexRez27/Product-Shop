@@ -38,10 +38,14 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/style-resources', '@nuxtjs/axios'],
   router: {
     middleware: ['redirectHome'],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  axios: {
+    baseURL: 'http://localhost:3001', // Adjust the URL based on your backend server
+  },
+  loading: false,
 }

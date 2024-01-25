@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'InStockFilter',
   computed: {
@@ -29,13 +29,17 @@ export default {
   },
   methods: {
     ...mapMutations(['filterByStock']),
-    ...mapActions(['filter']),
-    filterHandler() {
+    ...mapActions(['fetchProducts']),
+    async filterHandler() {
       const currentQueryParams = { ...this.$route.query }
-      currentQueryParams.inStock = this.inStock
+      // check if inStock filter is already applied
+      if (!this.getInStock) {
+        currentQueryParams.inStock = !this.inStock
+      } else {
+        delete currentQueryParams.inStock
+      }
       this.$router.push({ query: currentQueryParams })
-      this.filterByStock(!this.inStock)
-      this.filter()
+      await this.fetchProducts(currentQueryParams)
     },
   },
 }

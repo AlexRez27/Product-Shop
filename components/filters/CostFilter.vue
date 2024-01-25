@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import { required, decimal } from 'vuelidate/lib/validators'
 import ButtonComponent from '@/components/ButtonComponent.vue'
 
@@ -38,14 +38,6 @@ export default {
   components: {
     ButtonComponent,
   },
-  props: {
-    reset: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-  },
-  emits: ['on-reset'],
   data() {
     return {
       costFrom: null,
@@ -74,35 +66,22 @@ export default {
       )
     },
   },
-  watch: {
-    reset(newValue, oldValue) {
-      if (newValue === true) {
-        this.resetValues()
-        this.$emit('on-reset')
-      }
-    },
-  },
   mounted() {
-    this.resetValues()
+    this.costFrom = this.getMinCost
+    this.costTo = this.getMaxCost
   },
   methods: {
+    ...mapActions(['fetchProducts']),
     ...mapMutations(['filterByCost']),
-    ...mapActions(['filter']),
-    filterHandler() {
+    async filterHandler() {
       if (!this.isDisabled) {
         const currentQueryParams = { ...this.$route.query }
         currentQueryParams.from = this.costFrom
         currentQueryParams.to = this.costTo
         this.$router.push({ query: currentQueryParams })
-        this.filterByCost({ from: +this.costFrom, to: +this.costTo })
-        this.$nextTick(() => {
-          this.filter()
-        })
+        this.filterByCost({ from: this.costFrom, to: this.costTo })
+        await this.fetchProducts(currentQueryParams)
       }
-    },
-    resetValues() {
-      this.costFrom = this.getMinCost
-      this.costTo = this.getMaxCost
     },
   },
 }
@@ -110,7 +89,6 @@ export default {
 
 <style lang="scss" scoped>
 .costfilter {
-  width: 300px;
   &__title {
     font-size: $--big-font-size;
   }
@@ -134,5 +112,20 @@ export default {
 }
 .invalid {
   border-color: red;
+}
+
+@media (max-width: 768px) {
+  .costfilter {
+    width: 100%;
+    &__form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    &__input {
+      width: 90%;
+      margin-right: 20px;
+    }
+  }
 }
 </style>

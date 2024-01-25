@@ -9,15 +9,13 @@ export default {
   components: {
     ProductDetails,
   },
-  asyncData({ params }) {
+  async asyncData({ store, params }) {
     const productid = params.productid // When calling /abc the slug will be "abc"
-    return { productid }
+    await store.dispatch('fetchProductByID', productid)
+    // return { productid }
   },
   computed: {
     ...mapGetters(['getProductDetails']),
-  },
-  mounted() {
-    this.setProductDetails(+this.productid)
   },
   methods: {
     ...mapMutations(['setProductDetails']),

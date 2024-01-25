@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import ProductList from '~/components/ProductList.vue'
 import SideBar from '~/components/SideBar.vue'
 
@@ -16,21 +16,15 @@ export default {
     ProductList,
     SideBar,
   },
+  async asyncData({ store, route }) {
+    const currentQueryParams = { ...route.query }
+    await store.dispatch('fetchProducts', currentQueryParams)
+  },
+  data() {
+    return { showSideBar: false }
+  },
   computed: {
     ...mapGetters(['getProductList']),
-  },
-  mounted() {
-    const { query } = this.$route
-    if (query.category) this.filterByCategory(query.category)
-    if (query.from && query.to)
-      this.filterByCost({ from: query.from, to: query.to })
-    if (query.inStock) this.filterByStock(query.inStock)
-
-    if (query) this.filter()
-  },
-  methods: {
-    ...mapMutations(['filterByStock', 'filterByCost', 'filterByCategory']),
-    ...mapActions(['filter']),
   },
 }
 </script>
@@ -43,5 +37,6 @@ body {
 
 .container {
   display: flex;
+  background-color: #ccc;
 }
 </style>

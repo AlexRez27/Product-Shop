@@ -4,11 +4,10 @@
       <nuxt-link to="/"> <arrow-back-icon></arrow-back-icon> </nuxt-link>
     </div>
     <h1 class="details__title">{{ productDetails.title }}</h1>
-    <!-- <p class="details__category">{{ productDetails.category }}</p> -->
     <div class="details__image">
       <img
-        width="400px"
-        height="500px"
+        width="300px"
+        height="400px"
         :src="productDetails.image"
         :alt="productDetails.title"
       />
@@ -37,6 +36,7 @@ export default {
       required: true,
     },
   },
+
   computed: {
     isOutOfStock() {
       return this.productDetails.count === 0
@@ -47,11 +47,9 @@ export default {
 
 <style lang="scss" scoped>
 .details {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
   position: relative;
+  margin-left: 30px;
+  margin-right: 30px;
   &__title {
     text-align: center;
     margin-left: 100px;
