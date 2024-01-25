@@ -43,7 +43,7 @@ export default {
     middleware: ['redirectHome'],
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: { distDir: 'dist' },
   axios: {
     baseURL: 'http://localhost:3001', // Adjust the URL based on your backend server
   },
