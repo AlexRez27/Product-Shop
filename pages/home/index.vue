@@ -1,12 +1,15 @@
 <template>
   <div class="container">
     <side-bar></side-bar>
-    <product-list :product-list="getProductList"></product-list>
+    <product-list
+      v-if="getProductList"
+      :product-list="getProductList"
+    ></product-list>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import ProductList from '~/components/ProductList.vue'
 import SideBar from '~/components/SideBar.vue'
 
@@ -25,6 +28,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getProductList']),
+  },
+  methods: {
+    ...mapActions(['fetchProducts']),
   },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <section class="filters">
     <category-filter></category-filter>
-    <cost-filter :reset="setCostFilterToInitialValues"></cost-filter>
+    <cost-filter></cost-filter>
     <div class="filters__section">
       <in-stock-filter></in-stock-filter>
     </div>

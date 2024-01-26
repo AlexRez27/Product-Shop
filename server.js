@@ -67,6 +67,23 @@ app.get('/api/products/:id', (req, res) => {
   }
 })
 
+const categories = [
+  "men's clothing",
+  'jewelery',
+  'electronics',
+  "women's clothing",
+]
+
+// Route to get hardcoded categories
+app.get('/api/categories', (req, res) => {
+  try {
+    res.json({ categories })
+  } catch (error) {
+    console.error('Error fetching categories:', error)
+    res.status(500).json({ error: 'Internal Server Error' })
+  }
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)

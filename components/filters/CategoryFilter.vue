@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-for="category in categories"
+      v-for="category in getCategories"
       :key="category"
       class="filter"
       @click="filterHandler(category)"
@@ -15,19 +15,16 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-import { categories } from '@/data/constants'
 export default {
   name: 'CategoryFilter',
-  data() {
-    return {
-      categories,
-    }
-  },
   computed: {
-    ...mapGetters(['getFilteredCategory']),
+    ...mapGetters(['getFilteredCategory', 'getCategories']),
+  },
+  mounted() {
+    this.fetchCategories()
   },
   methods: {
-    ...mapActions(['fetchProducts']),
+    ...mapActions(['fetchProducts', 'fetchCategories']),
     ...mapMutations(['filterByCategory']),
     async filterHandler(category) {
       const currentQueryParams = { ...this.$route.query }

@@ -7,6 +7,7 @@ export const state = () => ({
   },
   inStock: false,
   productDetails: {},
+  categories: [],
 })
 
 export const actions = {
@@ -27,6 +28,15 @@ export const actions = {
       commit('setProductDetails', response.data)
     } catch (error) {
       console.error('Error fetching product by ID:', error)
+    }
+  },
+
+  async fetchCategories({ commit }) {
+    try {
+      const response = await this.$axios.get(`/api/categories`)
+      commit('setCategories', response.data.categories)
+    } catch (error) {
+      console.error('Error fetching categories:', error)
     }
   },
 }
@@ -53,6 +63,9 @@ export const mutations = {
   setProductDetails(state, payload) {
     state.productDetails = payload
   },
+  setCategories(state, payload) {
+    state.categories = payload
+  },
 }
 export const getters = {
   getProductList(state) {
@@ -72,5 +85,8 @@ export const getters = {
   },
   getFilteredCategory(state) {
     return state.filteredCategory
+  },
+  getCategories(state) {
+    return state.categories
   },
 }
