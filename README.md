@@ -16,5 +16,6 @@ $ npm run start
 # launch node js server
 $ node server.js
 
-[Try by yourself](https://product-shop-five.vercel.app/home)
+# Try by yourself
+https://product-shop-five.vercel.app/home
 ```
