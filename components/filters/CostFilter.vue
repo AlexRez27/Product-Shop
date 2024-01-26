@@ -5,13 +5,13 @@
       <input
         v-model="$v.costFrom.$model"
         class="costfilter__input"
-        :class="{ invalid: $v.costFrom.$invalid || isDisabled }"
+        :class="{ invalid: isDisabled }"
         type="text"
       />
       <input
         v-model="$v.costTo.$model"
         class="costfilter__input"
-        :class="{ invalid: $v.costFrom.$invalid || isDisabled }"
+        :class="{ invalid: isDisabled }"
         type="text"
       />
       <div>
