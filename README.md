@@ -1,4 +1,4 @@
-# products
+# Products Shop
 
 ## Project Setup
 
