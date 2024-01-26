@@ -13,9 +13,11 @@ $ npm run dev
 $ npm run build
 $ npm run start
 
-# generate static project
-$ npm run generate
-```
+# launch node js server
+$ node server.js
+
+# Try by yourself
+https://product-shop-five.vercel.app/home
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
@@ -66,3 +68,4 @@ More information about the usage of this directory in [the documentation](https:
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+```
