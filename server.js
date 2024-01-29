@@ -13,7 +13,7 @@ app.use(cors())
 // Define a route to get all products from the local JSON file
 app.get('/api/products', (req, res) => {
   try {
-    const filePath = path.join(__dirname, '..', 'data', 'products.json')
+    const filePath = path.join(__dirname, 'data', 'products.json')
     const rawData = fs.readFileSync(filePath)
     let data = JSON.parse(rawData)
 
