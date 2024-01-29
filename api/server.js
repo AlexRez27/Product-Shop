@@ -9,10 +9,11 @@ const port = process.env.PORT || 3001
 // Middleware to parse JSON data
 app.use(express.json())
 app.use(cors())
+
 // Define a route to get all products from the local JSON file
 app.get('/api/products', (req, res) => {
   try {
-    const filePath = path.join(__dirname, 'data', 'products.json')
+    const filePath = path.join(__dirname, '..', 'data', 'products.json')
     const rawData = fs.readFileSync(filePath)
     let data = JSON.parse(rawData)
 
@@ -50,7 +51,7 @@ app.get('/api/products', (req, res) => {
 // Define a route to get one product from the local JSON file by its id
 app.get('/api/products/:id', (req, res) => {
   try {
-    const filePath = path.join(__dirname, 'data', 'products.json')
+    const filePath = path.join(__dirname, '..', 'data', 'products.json')
     const rawData = fs.readFileSync(filePath)
     const data = JSON.parse(rawData)
 
@@ -69,7 +70,7 @@ app.get('/api/products/:id', (req, res) => {
 
 const categories = [
   "men's clothing",
-  'jewelery',
+  'jewelry',
   'electronics',
   "women's clothing",
 ]
