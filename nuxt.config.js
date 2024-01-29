@@ -44,11 +44,8 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: { distDir: 'dist' },
-  // axios: {
-  //   baseURL:
-  //     process.env.NODE_ENV === 'production'
-  //       ? 'https://product-shop-five.vercel.app'
-  //       : 'http://localhost:3001', // Adjust the URL based on your backend server
-  // },
+  axios: {
+    baseURL: 'http://localhost:3001',
+  },
   loading: false,
 }

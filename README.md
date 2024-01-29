@@ -16,9 +16,4 @@ $ node server.js
 $ npm run build
 $ npm run start
 
-
 ```
-
-### Try by yourself
-
-https://product-shop-five.vercel.app/home
